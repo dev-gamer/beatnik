@@ -22,14 +22,16 @@ exports.getSingleUserDataByID = (req, res)=> {
         } else {
             if (data.length > 0) {
                 res.json({
-                    status: true,
-                    msg: "User data",
+                    valid: true,
+                    status: "OK",
+                    message: "User data",
                     result: data[0]
                 })
             } else {
                 res.json({
-                    status: true,
-                    msg: "No data found",
+                    valid: true,
+                    status: "OK",
+                    message: "No data found",
                     result: {}
                 })
             }
@@ -48,13 +50,15 @@ exports.checkUserMail = (req, res) => {
             } else {
                 if (data.length > 0) {
                     res.json({
-                        status: true,
-                        msg: "Email exists"
+                        valid: true,
+                        status: "OK",
+                        message: "Email exists"
                     })
                 } else {
                     res.json({
-                        status: false,
-                        msg: "Mail dosn't exists"
+                        valid: false,
+                        status: "NOK",
+                        message: "Mail dosn't exists"
                     })
                 }
             }
@@ -70,13 +74,15 @@ exports.checkUserContact = (req, res) => {
         } else {
             if (data.length > 0) {
                 res.json({
-                    status: true,
-                    msg: "Contact Exists"
+                    valid: true,
+                    status: "OK",
+                    message: "Contact Exists"
                 })
             } else {
                 res.json({
-                    status: false,
-                    msg: "contact dosn't exists"
+                    valid: false,
+                    status: "NOK",
+                    message: "contact dosn't exists"
                 })
             }
         }
@@ -93,7 +99,12 @@ exports.registerUser = (req, res)=> {
             if (err) {
                 res.send(err)
             } else {
-                res.json({status: true, msg: "User registered successfully", data:[]})
+                res.json({
+                    valid: true,
+                    status: "OK", 
+                    message: "User registered successfully", 
+                    data:[]
+                })
             }
         })
     }
@@ -112,22 +123,25 @@ exports.loginUser = (req, res) => {
             } else {
                 if (response.length > 0) {
                     res.json({
-                        status: true,
-                        msg: "Logged in successfully",
+                        valid: true,
+                        status: "OK",
+                        message: "Logged in successfully",
                         result: response[0]
                     })
                 } else {
                     res.json({
-                        status: false,
-                        msg: "Wrong email or password"
+                        valid: false,
+                        status: "NOK",
+                        message: "Wrong email or password"
                     })
                 }
             }
         })
     } else {
         res.json({
-            status: false,
-            msg: "Wrong request"
+            valid: false,
+            status: "NOK",
+            message: "Wrong request"
         })
     }
 }
@@ -138,8 +152,9 @@ exports.updateUserData = (req, res) => {
             res.send(err)
         } else {
             res.json({
-                status: true,
-                msg: "User data updated successfully"
+                valid: true,
+                status: "OK",
+                message: "User data updated successfully"
             })
         }
     })

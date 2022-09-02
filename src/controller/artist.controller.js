@@ -8,22 +8,25 @@ exports.artistPortfolio_saved = (req, res) => {
             } else {
                 if (response.length > 0) {
                     res.json({
-                        status: true,
-                        msg: "Artist portfolio data",
+                        valid: true,
+                        status: "OK",
+                        message: "Artist portfolio data",
                         result: response[0]
                     })
                 } else {
                     res.json({
-                        status: false,
-                        msg: "No data found"
+                        valid: false,
+                        status: "NOK",
+                        message: "No data found"
                     })
                 }
             }
         })
     } else {
         res.json({
-            status: false,
-            msg: "Wrong request"
+            valid: false,
+            status: "NOK",
+            message: "Wrong request"
         })
     }
 }
@@ -41,8 +44,9 @@ exports.artist_saved_upload = (req, res) => {
                             res.send(err)
                         } else {
                             res.json({
-                                status: true,
-                                msg: "Artist portfolio updated successfully"
+                                valid: true,
+                                status: "OK",
+                                message: "Artist portfolio updated successfully"
                             })
                         }
                     })
@@ -52,8 +56,9 @@ exports.artist_saved_upload = (req, res) => {
                             res.send(err)
                         } else {
                             res.json({
-                                status: true,
-                                msg: "Artist portfolio inserted successfully"
+                                valid: true,
+                                status: "OK",
+                                message: "Artist portfolio inserted successfully"
                             })
                         }
                     })
@@ -63,8 +68,9 @@ exports.artist_saved_upload = (req, res) => {
 
     } else {
         res.json({
-            status: false,
-            msg: "Wrong request"
+            valid: false,
+            status: "NOK",
+            message: "Wrong request"
         })
     }
 }

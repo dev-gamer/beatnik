@@ -8,15 +8,17 @@ exports.saveEmailHolder = (req, res) => {
                 res.send(err)
             } else {
                 res.json({
-                    status: true,
-                    msg: "Email saved successfully"
+                    valid: true,
+                    status: "OK",
+                    message: "Email saved successfully"
                 })
             }
         })
     } else {
         res.json({
-            status: false,
-            msg: "Wrong request"
+            valid: true,
+            status: "NOK",
+            message: "Wrong request"
         })
     }
 }
@@ -29,15 +31,17 @@ exports.saveContactForm = (req, res) => {
                 res.send(err)
             } else {
                 res.json({
-                    status: true,
-                    msg: "Contact form saved successfully"
+                    valid: true,
+                    status: "OK",
+                    message: "Contact form saved successfully"
                 })
             }
         })
     } else {
         res.json({
-            status: false,
-            msg: "Wrong request"
+            valid: true,
+            status: "NOK",
+            message: "Wrong request"
         })
     }
 }
