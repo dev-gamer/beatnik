@@ -89,5 +89,16 @@ Users.updateUserDataByID = (dataArr, result) => {
     })
 }
 
+//set user portfolio status
+Users.setPortfolioStatus = (statusArr, result) => {
+    dbConn.query("UPDATE users SET portfolio_status = ? where id = ? ", [statusArr.status, statusArr.userID], (err, res) => {
+        if (err) {
+            result (err)
+        } else {
+            result (null, res)
+        }
+    })
+}
+
 
 module.exports = Users

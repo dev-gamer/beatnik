@@ -159,3 +159,17 @@ exports.updateUserData = (req, res) => {
         }
     })
 }
+
+exports.updateUserPortfolioStatus = (req, res) => {
+    userModel.setPortfolioStatus(req.body, (err, response) => {
+        if (err) {
+            res.send(err)
+        } else {
+            res.json({
+                valid: true,
+                status: "OK",
+                message: "User status updated successfully"
+            })
+        }
+    })
+}
