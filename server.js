@@ -11,6 +11,15 @@ app.get("/", (req, res) => {
     res.send("Test OK")
 })
 
+//check
+app.get("/api/v1", (req, res) => {
+    res.json({
+        valid: true,
+        status: "OK",
+        message: "Server Running"
+    })
+})
+
 //user
 const userRoutes = require('./src/routes/user.route')
 app.use('/api/v1/users', userRoutes)
