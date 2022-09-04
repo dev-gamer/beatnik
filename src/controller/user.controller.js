@@ -173,3 +173,49 @@ exports.updateUserPortfolioStatus = (req, res) => {
         }
     })
 }
+
+exports.getRandUserIDs = (req, res) => {
+    if (req.params.userID) {
+        userModel.getRandUsersID(req.params.userID, (err, response) => {
+            if (err) {
+                res.send(err)
+            } else {
+                if (response.length > 0) {
+                    res.json({
+                        valid: true,
+                        status: "true",
+                        message: "Users ID list",
+                        result: shuffle(response)
+                    })
+                } else {
+                    res.json({
+                        valid: false,
+                        status: "NOK",
+                        message: "No data found!"
+                    })
+                }
+            }
+        })
+    } else {
+        res.json({
+            valid: false,
+            status: "NOK",
+            message: "Wrong request"
+        })
+    }
+}
+
+
+
+
+
+
+// * *************************************************** functions for support ****************************************
+
+//shuffle an array
+function shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
+    return array
+}
+
+// * *************************************************** ends ***********************************************************

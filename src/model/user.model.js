@@ -100,5 +100,16 @@ Users.setPortfolioStatus = (statusArr, result) => {
     })
 }
 
+//get random users id's
+Users.getRandUsersID = (userID, result) => {
+    dbConn.query("SELECT id FROM users WHERE id <> ? ", userID, (err, res) => {
+        if (err) {
+            result (err)
+        } else {
+            result (null, res)
+        }
+    })
+}
+
 
 module.exports = Users

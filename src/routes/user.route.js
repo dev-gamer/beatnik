@@ -11,5 +11,6 @@ routes.get('/checkUserContact/contact/:contact', userController.checkUserContact
 routes.post('/login', userController.loginUser)
 routes.post('/update', userController.updateUserData)
 routes.post('/setPortfolioStatus', userController.updateUserPortfolioStatus)
+routes.get('/getRandUserID/userID/:userID', userController.getRandUserIDs)
 
 module.exports = routes
