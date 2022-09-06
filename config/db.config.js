@@ -16,4 +16,6 @@ connection.connect(function (err) {
 // module.exports = {
 //     DB_PORT: 4300,
 //     DB_URL: "mongodb://localhost:5000/beatnik"
-// }
+// 
+
+module.exports = connection
