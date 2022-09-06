@@ -2,10 +2,11 @@ const db = require('mysql2')
 const connection = db.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: 'Beat@@#$1234#123456789',
     database: 'beatnik'
 })
 
+// 'Beat@@#$1234#123456789'
 
 connection.connect(function (err) {
     if (err) throw err
