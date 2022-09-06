@@ -2,6 +2,16 @@ const express = require("express")
 const bodyParser = require("body-parser")
 
 const app = express()
+
+// const mongoose = require("mongoose")
+// const dbURL = require("./config/db.config").DB_URL
+
+// mongoose.connect(dbURL)
+
+// mongoose.connection.on("connected", () => {
+//     console.log("Connected")
+// })
+
 const port = process.env.PORT || 5000
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())

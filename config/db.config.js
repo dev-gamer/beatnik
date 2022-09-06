@@ -1,4 +1,4 @@
-const db = require('mysql')
+const db = require('mysql2')
 const connection = db.createConnection({
     host: 'localhost',
     user: 'root',
@@ -6,10 +6,13 @@ const connection = db.createConnection({
     database: 'beatnik'
 })
 
-//connect
+
 connection.connect(function (err) {
     if (err) throw err
     console.log("Database Connected Successfully");
 })
 
-module.exports = connection
+// module.exports = {
+//     DB_PORT: 4300,
+//     DB_URL: "mongodb://localhost:5000/beatnik"
+// }
