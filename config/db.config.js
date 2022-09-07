@@ -1,5 +1,5 @@
 const db = require('mysql2')
-const connection = db.createConnection({
+const connection = db.createPool({
     host: 'localhost',
     user: 'root',
     port: 3308,
