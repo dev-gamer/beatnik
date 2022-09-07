@@ -70,7 +70,9 @@ exports.checkUserMail = (req, res) => {
 exports.checkUserContact = (req, res) => {
     userModel.checkForContactExists(req.params.contact, (err, data) => {
         if (err) {
-            res.send(err)
+            res.json({
+                log: err
+            })
         } else {
             if (data.length > 0) {
                 res.json({

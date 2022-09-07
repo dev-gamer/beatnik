@@ -13,6 +13,14 @@ connection.connect(function (err) {
     console.log("Database Connected Successfully");
 })
 
+connection.query("SELECT * FROM users", (err, res) => {
+    if (err) {
+        throw err
+    } else {
+        console.log(res)
+    }
+})
+
 // module.exports = {
 //     DB_PORT: 4300,
 //     DB_URL: "mongodb://localhost:5000/beatnik"
