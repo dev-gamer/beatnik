@@ -122,5 +122,15 @@ Users.getUserDetailByEmail = (email, result) => {
     })
 }
 
+//reset password
+Users.resetPassword = (credArr, result) => {
+    dbConn.query("UPDATE users SET password = ? WHERE email = ? ", [credArr.password, credArr.email], (err, res) => {
+        if (err) {
+            result (err)
+        } else {
+            result (null, res)
+        }
+    })
+}
 
 module.exports = Users

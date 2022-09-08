@@ -14,5 +14,7 @@ routes.post('/setPortfolioStatus', userController.updateUserPortfolioStatus)
 routes.get('/getRandUserID/userID/:userID', userController.getRandUserIDs)
 routes.post('/socialMediaSignUP', userController.socialMediaSignUp)
 routes.post('/socialMediaLogin', userController.socialMediaLogin)
+routes.post('/sendOTP', userController.sendOTP)
+routes.post('/resetPassword', userController.resetPassword)
 
 module.exports = routes

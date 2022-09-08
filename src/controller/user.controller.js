@@ -1,4 +1,7 @@
 const userModel = require('../model/user.model')
+const nodemailer = require("nodemailer");
+const req = require('express/lib/request');
+const res = require('express/lib/response');
 
 //get all active users
 exports.getAllActiveUsers = (req, res)=> {
@@ -275,7 +278,68 @@ exports.socialMediaLogin = (req, res) => {
     }
 }
 
+exports.sendOTP = (req, res) => {
+    if (req.body.email) {
 
+        let email = req.body.email
+        
+        let transporter = nodemailer.createTransport({
+            host: "smtp.sendgrid.net",
+            port: 587,
+            secure: false, // true for 465, false for other ports
+            auth: {
+              user: 'apikey', // generated ethereal user
+              pass: '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', // generated ethereal password
+            },
+        });
+        let html = 'Hello '+email+', Your six digit code is 123456. You can also reset your password at https://beatnik.community/forgot-password?m='+email;
+        // send mail with defined transport object
+        let info = transporter.sendMail({
+            from: '"Beatnik" <info@lty.ch>', // sender address
+            to: email, // list of receivers
+            subject: "Forgot Password", // Subject line
+            text: "Forgot Password", // plain text body
+            html: html, // html body
+        });
+
+        res.json({
+            valid: true,
+            status: "OK",
+            message: "OTP was sent successfully"
+        })
+
+    } else {
+        res.json({
+            valid: false,
+            status: "NOK",
+            message: "Wrong request"
+        })
+    }
+}
+
+exports.resetPassword = (req, res) => {
+    if (req.body.email && req.body.password) {
+        userModel.resetPassword(req.body, (err, response) => {
+            if (err) {
+                res.send(err)
+            } else {
+                res.json({
+                    valid: true,
+                    status: "OK",
+                    message: "Password changed successfully"
+                })
+            }
+        })
+    } else {
+        res.json({
+            valid: false,
+            status: "NOK",
+            message: "Wrong request"
+        })
+    }
+}
+
+// $html = 'Hello '.$sendingArr['email'].', Your six digit code is '.$sendingArr['otp'].' You can also reset your password at https://beatnik.community/forgot-password?m='.base64_encode($sendingArr['email']);
 
 // * *************************************************** functions for support ****************************************
 
