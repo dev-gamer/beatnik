@@ -208,7 +208,72 @@ exports.getRandUserIDs = (req, res) => {
 }
 
 
+exports.socialMediaSignUp = (req, res) => {
+    if (req.body.name && req.body.email) {
+        userModel.checkForMailExists(req.body.email, (err, response) => {
+            if (err) {
+                res.send(err)
+            } else {
+                if (response.length > 0) {
+                    res.json({
+                        valid: false,
+                        status: "NOK",
+                        message: "Mail already exists!"
+                    })
+                } else {
+                    userModel.registerUsers(req.body, (err, response) => {
+                        if (err) {
+                            res.send(err)
+                        } else {
+                            res.json({
+                                valid: true,
+                                status: "OK",
+                                message: "User registered successfully"
+                            })
+                        }
+                    })
+                }
+            }
+        })
+    } else {
+        res.json({
+            valid: false,
+            status: "NOK",
+            message: "Wrong request"
+        })
+    }
+}
 
+exports.socialMediaLogin = (req, res) => {
+    if (req.body.email) {
+        userModel.getUserDetailByEmail(req.body.email, (err, response) => {
+            if (err) {
+                res.send(err)
+            } else {
+                if (response.length > 0) {
+                    res.json({
+                        valid: true,
+                        status: "OK",
+                        message: "Loggin successfully",
+                        result: response[0]
+                    })
+                } else {
+                    res.json({
+                        valid: false,
+                        status: "NOK",
+                        message: "Email id not found!"
+                    })
+                }
+            }
+        })
+    } else {
+        res.json({
+            valid: false,
+            status: "NOK",
+            message: "Wrong request"
+        })
+    }
+}
 
 
 

@@ -111,5 +111,16 @@ Users.getRandUsersID = (userID, result) => {
     })
 }
 
+//get user detail by email
+Users.getUserDetailByEmail = (email, result) => {
+    dbConn.query("SELECT id, name, email FROM users WHERE email = ? ", email, (err, res) => {
+        if (err) {
+            result (err)
+        } else {
+            result (null, res)
+        }
+    })
+}
+
 
 module.exports = Users
