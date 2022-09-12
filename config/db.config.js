@@ -3,8 +3,7 @@ const connection = db.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'Beat@@#$1234#123456789',
-    database: 'beatnik',
-    port: 3306
+    database: 'beatnik'
 })
 
 
