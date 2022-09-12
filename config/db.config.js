@@ -3,7 +3,8 @@ const connection = db.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'Beat@@#$1234#123456789',
-    database: 'beatnik'
+    database: 'beatnik',
+    port: 3306
 })
 
 
@@ -12,13 +13,6 @@ connection.connect(function (err) {
     console.log("Database Connected Successfully");
 })
 
-connection.query("SELECT * FROM users", (err, res) => {
-    if (err) {
-        throw err
-    } else {
-        console.log(res)
-    }
-})
 
 // module.exports = {
 //     DB_PORT: 4300,
