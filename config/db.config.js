@@ -1,5 +1,5 @@
 const db = require('mysql2')
-const connection = db.createConnection({
+const connection = db.createPool({
     host: 'localhost',
     user: 'root',
     password: 'Beat@@#$1234#123456789',
@@ -7,7 +7,7 @@ const connection = db.createConnection({
 })
 
 
-connection.connect(function (err) {
+connection.getConnection(function (err) {
     if (err) throw err
     console.log("Database Connected Successfully");
 })
